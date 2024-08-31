@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Publicaciones{% endblock %}
+
+{% block content %}
+<div class="post-grid">
+    {% for post in posts %}
+    <div class="post-item">
+        <a href="{% url 'post_detail' post.pk %}">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            {% else %}
+            <p>No hay imagen disponible.</p>
+            {% endif %}
+            <p>{{ post.text }}</p>
+            <div class="post-info">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.created_date }}</p>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
